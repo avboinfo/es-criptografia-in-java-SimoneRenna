@@ -9,21 +9,15 @@ public class Cryto {
         return output.toString();
     }
 
-    static private String xorAlgo(String data, String key) {
+    static public String xorAlgo(String data, String key) {
+        StringBuilder result = new StringBuilder();
 
-        String acc = "";
-
-        for (int i = 0; i < data.length(); i++) {
-            char d = data.charAt(i);
-
-            for (int j = 0; j < key.length(); j++) {
-                char k = key.charAt(j);
-
-                char xorChar = (char) (d ^ k);
-                acc = acc + xorChar;
-            }
+        for(int i=0; i<data.length(); i++){
+            char inputChar = data.charAt(i);
+            char keyChar = key.charAt(i % key.length());
+            char encryptedChar = (char) (inputChar ^ keyChar);
+            result.append(encryptedChar);
         }
-
-        return acc;
+        return result.toString();
     }
 }
